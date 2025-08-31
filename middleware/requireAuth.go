@@ -7,11 +7,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gin-gonic/gin"
-	"github.com/golang-jwt/jwt/v5"
 	"stokq-backend/config"
 	"stokq-backend/dto"
 	"stokq-backend/models"
+
+	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 func RequireAuth(c *gin.Context) {

@@ -5,18 +5,19 @@ import (
 	"os"
 	"time"
 
+	"stokq-backend/config"
+	"stokq-backend/dto"
+	"stokq-backend/models"
+
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
-	"stokq-backend/config"
-	"stokq-backend/dto"
-	"stokq-backend/models"
 )
 
 func Register(c *gin.Context) {
 	var req dto.RegisterRequest
-	
+
 	// Bind JSON request
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
@@ -79,7 +80,7 @@ func Register(c *gin.Context) {
 
 func Login(c *gin.Context) {
 	var req dto.LoginRequest
-	
+
 	// Bind JSON request
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, dto.ErrorResponse{

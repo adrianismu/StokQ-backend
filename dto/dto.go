@@ -13,7 +13,7 @@ type LoginRequest struct {
 }
 
 type AuthResponse struct {
-	Token string `json:"token"`
+	Token string       `json:"token"`
 	User  UserResponse `json:"user"`
 }
 
@@ -39,13 +39,13 @@ type UpdateProductRequest struct {
 }
 
 type ProductResponse struct {
-	ID    uint    `json:"id"`
-	SKU   string  `json:"sku"`
-	Name  string  `json:"name"`
-	Stock int     `json:"stock"`
-	Price float64 `json:"price"`
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
+	ID        uint    `json:"id"`
+	SKU       string  `json:"sku"`
+	Name      string  `json:"name"`
+	Stock     int     `json:"stock"`
+	Price     float64 `json:"price"`
+	CreatedAt string  `json:"created_at"`
+	UpdatedAt string  `json:"updated_at"`
 }
 
 // Stock DTOs

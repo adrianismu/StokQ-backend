@@ -3,16 +3,17 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 	"stokq-backend/config"
 	"stokq-backend/dto"
 	"stokq-backend/models"
+
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 func StockIn(c *gin.Context) {
 	var req dto.StockTransactionRequest
-	
+
 	// Bind JSON request
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
@@ -23,7 +24,7 @@ func StockIn(c *gin.Context) {
 
 	// Start transaction
 	tx := config.DB.Begin()
-	
+
 	// Find product
 	var product models.Product
 	if err := tx.First(&product, req.ProductID).Error; err != nil {
@@ -74,7 +75,7 @@ func StockIn(c *gin.Context) {
 
 func StockOut(c *gin.Context) {
 	var req dto.StockTransactionRequest
-	
+
 	// Bind JSON request
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
@@ -85,7 +86,7 @@ func StockOut(c *gin.Context) {
 
 	// Start transaction
 	tx := config.DB.Begin()
-	
+
 	// Find product
 	var product models.Product
 	if err := tx.First(&product, req.ProductID).Error; err != nil {

@@ -4,16 +4,17 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 	"stokq-backend/config"
 	"stokq-backend/dto"
 	"stokq-backend/models"
+
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 func CreateProduct(c *gin.Context) {
 	var req dto.CreateProductRequest
-	
+
 	// Bind JSON request
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
@@ -65,7 +66,7 @@ func CreateProduct(c *gin.Context) {
 
 func GetProducts(c *gin.Context) {
 	var products []models.Product
-	
+
 	if err := config.DB.Find(&products).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, dto.ErrorResponse{
 			Error: "Failed to fetch products",
@@ -147,7 +148,7 @@ func UpdateProduct(c *gin.Context) {
 	}
 
 	var req dto.UpdateProductRequest
-	
+
 	// Bind JSON request
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
